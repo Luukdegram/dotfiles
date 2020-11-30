@@ -1,0 +1,23 @@
+[server]
+# exit session if no requests were received during given period
+timeout = 1800 # 30 minutes
+
+
+# this is just for zls  and only for types/functions, the rest of the
+[semantic_tokens]
+tagField = "function"
+errorTag = "function"
+field = "function"
+type = "type"
+variable = "variable"
+namespace = "module"
+function = "function"
+string = "string"
+keyword = "keyword"
+operator = "operator"
+comment = "comment"
+
+[language.zig]
+filetypes = ["zig"]
+roots = ["build.zig"]
+command = "/home/luuk/projects/zls/zig-cache/bin/zls"

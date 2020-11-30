@@ -1,0 +1,45 @@
+# Bootstrap the plugin manager, loading its commands and kakrc highlighting.
+nop %sh{
+    [ ! -e "${kak_config}/plugins/plug.kak" ] && \
+    mkdir -p "${kak_config}/plugins" && \
+    git clone 'https://github.com/robertmeta/plug.kak.git' "${kak_config}/plugins/plug.kak" >&2
+}
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+plug "robertmeta/plug.kak" noload
+
+plug "ul/kak-lsp" do %{
+    cargo install --locked --force --path .
+}
+
+plug "katesuyu/zzz.kak"
+
+colorscheme gruvbox
+
+set-option global tabstop 4
+
+add-highlighter global/ number-lines -relative -hlcursor -separator ' '
+add-highlighter global/ show-matching
+
+# format before write
+hook global BufWritePre .* "try %{ format-buffer }"
+
+#evaluate-commands %sh{kak-lsp --kakoune -s $kak_session}
+hook global WinSetOption filetype=zig %{
+    lsp-enable-window
+}
+
+hook global WinSetOption filetype=zig %{
+  hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
+  hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
+  hook window -group semantic-tokens InsertIdle .* lsp-semantic-tokens
+  hook -once -always window WinSetOption filetype=.* %{
+    remove-hooks window semantic-tokens
+  }
+}
+
+hook global WinSetOption filetype=zig %<
+        set-option window formatcmd 'zig fmt --stdin'
+            set-option window makecmd 'zig build'
+
+                hook -once -always window WinSetOption filetype=.* %< remove-hooks window zig-.+ >
+>
