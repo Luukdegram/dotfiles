@@ -24,7 +24,7 @@ add-highlighter global/ show-matching
 hook global BufWritePre .* "try %{ format-buffer }"
 
 #evaluate-commands %sh{kak-lsp --kakoune -s $kak_session}
-hook global WinSetOption filetype=zig %{
+hook global WinSetOption filetype=(c|cpp|zig) %{
     lsp-enable-window
 }
 
@@ -37,9 +37,11 @@ hook global WinSetOption filetype=zig %{
   }
 }
 
-hook global WinSetOption filetype=zig %<
-        set-option window formatcmd 'zig fmt --stdin'
-            set-option window makecmd 'zig build'
+set-option global lsp_cmd "kak-lsp -s %val{session} -vvv --log /tmp/kak-lsp.log"
 
-                hook -once -always window WinSetOption filetype=.* %< remove-hooks window zig-.+ >
+hook global WinSetOption filetype=zig %<
+    set-option window formatcmd 'zig fmt --stdin'
+    set-option window makecmd 'zig build'
+
+    hook -once -always window WinSetOption filetype=.* %< remove-hooks window zig-.+ >
 >
