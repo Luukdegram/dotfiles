@@ -13,7 +13,7 @@ plug "ul/kak-lsp" do %{
 
 plug "katesuyu/zzz.kak"
 
-colorscheme gruvbox
+colorscheme calm-night
 
 set-option global tabstop 4
 
@@ -45,3 +45,5 @@ hook global WinSetOption filetype=zig %<
 
     hook -once -always window WinSetOption filetype=.* %< remove-hooks window zig-.+ >
 >
+
+map -docstring 'comment out selected lines' global normal '#' ': comment-line<ret>'

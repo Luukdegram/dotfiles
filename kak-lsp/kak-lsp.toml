@@ -3,18 +3,18 @@
 timeout = 1800 # 30 minutes
 
 [semantic_tokens]
-tagField = "function"
-errorTag = "function"
-field = "function"
-parameter = "variable"
+#tagField = "function"
+#errorTag = "function"
+#field = "function"
+#parameter = "variable"
 type = "type"
-variable = "variable"
-namespace = "module"
+#variable = "variable"
+#namespace = "module"
 function = "function"
-string = "string"
+#string = "string"
 keyword = "keyword"
-operator = "operator"
-comment = "comment"
+#operator = "operator"
+#comment = "comment"
 
 [semantic_token_modifiers]
 namespace = "module"
