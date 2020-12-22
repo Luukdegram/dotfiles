@@ -13,7 +13,7 @@ plug "ul/kak-lsp" do %{
 
 plug "katesuyu/zzz.kak"
 
-colorscheme calm-night
+# colorscheme calm-night
 
 set-option global tabstop 4
 
