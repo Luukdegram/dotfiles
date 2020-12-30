@@ -17,7 +17,7 @@ plug "katesuyu/zzz.kak"
 
 set-option global tabstop 4
 
-add-highlighter global/ number-lines -relative -hlcursor -separator ' '
+add-highlighter global/ number-lines -hlcursor -separator ' '
 add-highlighter global/ show-matching
 
 # format before write
