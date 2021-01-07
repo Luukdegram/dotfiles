@@ -26,6 +26,7 @@ hook global BufWritePre .* "try %{ format-buffer }"
 #evaluate-commands %sh{kak-lsp --kakoune -s $kak_session}
 hook global WinSetOption filetype=(c|cpp|zig) %{
     lsp-enable-window
+    lsp-auto-hover-enable
 }
 
 hook global WinSetOption filetype=zig %{
