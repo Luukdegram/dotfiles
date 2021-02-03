@@ -22,4 +22,4 @@ namespace = "module"
 [language.zig]
 filetypes = ["zig"]
 roots = ["build.zig"]
-command = "/home/luuk/projects/zls/zig-cache/bin/zls"
+command = "/home/luuk/dev/zls/zig-cache/bin/zls"
