@@ -23,3 +23,9 @@ namespace = "module"
 filetypes = ["zig"]
 roots = ["build.zig"]
 command = "/home/luuk/dev/zls/zig-cache/bin/zls"
+
+[language.go]
+filetypes = ["go"]
+roots = ["Gopkg.toml", "go.mod", ".git", ".hg"]
+command = "/home/luuk/go/bin/gopls"
+offset_encoding = "utf-8"
