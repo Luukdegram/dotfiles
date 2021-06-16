@@ -10,11 +10,11 @@ timeout = 1800 # 30 minutes
 type = "type"
 # variable = "variable"
 #namespace = "module"
-function = "function"
-# string = "string"
+function = "black"
+string = "module"
 keyword = "keyword"
 #operator = "operator"
-#comment = "comment"
+comment = "white"
 
 [semantic_token_modifiers]
 namespace = "module"
@@ -22,7 +22,8 @@ namespace = "module"
 [language.zig]
 filetypes = ["zig"]
 roots = ["build.zig"]
-command = "/home/luuk/dev/zls/zig-cache/bin/zls"
+command = "sh"
+args = ["-c", "/home/luuk/dev/zls/zig-cache/bin/zls"]
 
 [language.go]
 filetypes = ["go"]

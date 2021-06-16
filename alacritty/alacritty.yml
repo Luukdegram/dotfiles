@@ -109,7 +109,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Hack
+    family: Fira Code
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -176,19 +176,19 @@ font:
 colors:
   # Default colors
   primary:
-    background: '0x2C2C2C'
-    foreground: '0xDCDCCC'
+    background: '0x181a1b'
+    foreground: '0xd1d1d1'
 
   # Normal colors
   normal:
-    black:   '0x3F3F3F'
-    red:     '0x705050'
-    green:   '0x60B48A'
-    yellow:  '0xDFAF8F'
-    blue:    '0x9AB8D7'
-    magenta: '0xDC8CC3'
-    cyan:    '0x8CD0D3'
-    white:   '0xDCDCCC'
+    black:   '0xFAC03B'
+    red:     '0xc15959'
+    green:   '0x37ad82'
+    yellow:  '0xffb354'
+    blue:    '0x7398dd'
+    magenta: '0xca70d6'
+    cyan:    '0x7398dd'
+    white:   '0x5c6366'
 
   # Bright colors
   bright:

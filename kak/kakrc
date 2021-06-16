@@ -21,6 +21,9 @@ add-highlighter global/ show-matching
 # format before write
 hook global BufWritePre .* "try %{ format-buffer }"
 
+map global user p -docstring 'paste from clipboard' '!xsel -bo<ret>uU'
+map global user y -docstring 'copy to clipboard' '<a-|>xsel -bi<ret>'
+
 #evaluate-commands %sh{kak-lsp --kakoune -s $kak_session}
 hook global WinSetOption filetype=(zig|go) %{
     lsp-enable-window
@@ -41,9 +44,12 @@ hook global WinSetOption filetype=zig %{
 hook global WinSetOption filetype=zig %<
     set-option window formatcmd 'zig fmt --stdin'
     set-option window makecmd 'zig build'
+    # set-option window lintcmd 'zig ast-check'
 
     hook -once -always window WinSetOption filetype=.* %< remove-hooks window zig-.+ >
 >
+
+set-option global lintcmd 'zig ast-check 2>&1'
 
 hook global WinSetOption filetype=go %{
     set-option window formatcmd 'gofmt'
