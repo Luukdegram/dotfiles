@@ -2,28 +2,43 @@
 # exit session if no requests were received during given period
 timeout = 1800 # 30 minutes
 
-[semantic_tokens]
-#tagField = "function"
-#errorTag = "function"
-#field = "function"
-# parameter = "variable"
-type = "type"
-# variable = "variable"
-#namespace = "module"
-function = "black"
-string = "module"
-keyword = "keyword"
-#operator = "operator"
-comment = "white"
+[[semantic_tokens]]
+token = "keyword"
+face = "blue"
 
-[semantic_token_modifiers]
-namespace = "module"
+[[semantic_tokens]]
+token = "function"
+face = "yellow"
+
+[[semantic_tokens]]
+token = "type"
+face = "yellow"
+
+[[semantic_tokens]]
+token = "string"
+face = "green"
+
+[[semantic_tokens]]
+token = "string"
+face = "green"
+
+[[semantic_tokens]]
+token = "type"
+face = "green"
+modifiers = ["namespace"]
+
+[[semantic_tokens]]
+token = "builtin"
+face = "magenta"
+
+# [[semantic_tokens]]
+# token = "operator"
+# face = "red"
 
 [language.zig]
 filetypes = ["zig"]
 roots = ["build.zig"]
-command = "sh"
-args = ["-c", "/home/luuk/dev/zls/zig-cache/bin/zls"]
+command = "/home/luuk/dev/zls/zig-cache/bin/zls"
 
 [language.go]
 filetypes = ["go"]
