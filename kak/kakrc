@@ -12,6 +12,7 @@ plug "ul/kak-lsp" do %{
 }
 
 plug "katesuyu/zzz.kak"
+plug "andreyorst/fzf.kak"
 
 set-option global tabstop 4
 
@@ -23,6 +24,8 @@ hook global BufWritePre .* "try %{ format-buffer }"
 
 map global user p -docstring 'paste from clipboard' '!xsel -bo<ret>uU'
 map global user y -docstring 'copy to clipboard' '<a-|>xsel -bi<ret>'
+map global normal <c-p> ': fzf-mode<ret>'
+map -docstring 'comment out selected lines' global normal '#' ': comment-line<ret>'
 
 #evaluate-commands %sh{kak-lsp --kakoune -s $kak_session}
 hook global WinSetOption filetype=(zig|go) %{
@@ -44,8 +47,8 @@ hook global WinSetOption filetype=zig %{
 hook global WinSetOption filetype=zig %<
     set-option window formatcmd 'zig fmt --stdin'
     set-option window makecmd 'zig build'
-    # set-option window lintcmd 'zig ast-check'
 
+	hook buffer BufWritePre .* %{lint}
     hook -once -always window WinSetOption filetype=.* %< remove-hooks window zig-.+ >
 >
 
@@ -58,4 +61,3 @@ hook global WinSetOption filetype=go %{
     hook buffer BufWritePre .* %{format}
 }
 
-map -docstring 'comment out selected lines' global normal '#' ': comment-line<ret>'
