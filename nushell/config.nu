@@ -9,9 +9,12 @@ def create_left_prompt [] {
     let is_git_repo = (do -i { git rev-parse --is-inside-work-tree } | str contains "true")
     if ($is_git_repo) {
         let branch = (git branch --show-current | str trim)
-        $path_segment + $" \( ($branch)\)" 	
+        let is_dirty = (git status -s -uno | split row "M" | length) > 0
+        let token = if ($is_dirty) { " ﰜ" } else { "" }
+        $path_segment + $" \( ($branch)($token)\)"
+
     } else {
-        $path_segment + (char newline)
+        $path_segment
     }
 }
 
